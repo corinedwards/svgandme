@@ -1,0 +1,93 @@
+<!DOCTYPE>
+<html>
+	<head></head>
+	<body>
+		<svg width="0" height="0">
+			<defs>
+				<pattern id="dotrock" x="10" y="10" width="20" height="20" patternUnits="userSpaceOnUse">
+					<animate dur=".5s" repeatCount="indefinite" attributeName="y" values="0;20"/>
+					<rect width='20' height='20' fill='#000'/>
+						<circle cx="10" cy="10" r="10" style="fill:none;stroke:#fff;stroke-width:3"/>
+					</rect>
+				</pattern>
+				<pattern id="diag" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse">
+					<animate dur="0.2s" repeatCount="indefinite" attributeName="x" values="0;8"/>
+					<path style="stroke-width:3;stroke:#000" d="M-2 10 L10 -2 Z M10 6L6 10 Z M-2 2 L2 -2" />
+				</pattern>
+				<pattern  id="qbert" x="10" y="10" width="56" height="100" patternUnits="userSpaceOnUse">
+					<animate dur="1.7s" repeatCount="indefinite" attributeName="x" values="0;56"/>
+					<animate dur="1.7s" repeatCount="indefinite" attributeName="y" values="0;100"/>
+					<rect width='56' height='100' fill='#000'/>
+						<path d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='#fff' stroke-width='3'/>
+						<path d='M28 0L28 34L0 50L0 84L28 100L56 84L56 50L28 34' fill='none' stroke='#ffe' stroke-width='3'/>
+				</patern>
+				<pattern id="razorscale" x="0" y="0" width="40" height="20" patternUnits="userSpaceOnUse">
+					<animate dur=".5s" repeatCount="indefinite" attributeName="y" values="20;0"/>
+					<rect width="40" height="20" style="fill:#000"/>
+						<path style="fill:none;stroke-width:1;stroke:#fff" d="M0,20 L21,0 L41,20" />
+					</rect>
+				</pattern>
+				<pattern id="cloudpuff" x="0" y="0" width="40" height="30" patternUnits="userSpaceOnUse">
+					<animate dur=".5s" repeatCount="indefinite" attributeName="x" values="40;0"/>
+					<rect width="40" height="30" style="fill:#fff"/>
+						<circle cx="20" cy="30" r="20" style="fill:none;stroke:#000;stroke-width:2"/>
+					</rect>
+				</pattern>
+			</defs>
+		</svg>
+		<svg width="400" height="400">
+			<path d="M200,200 L200,20 A180,180 0 0,1 377,231 z"
+				style="fill:url(#dotrock);
+					fill-opacity: 1;"/>
+			<path d="M200,200 L377,231 A180,180 0 0,1 138,369 z"
+				style="fill:url(#diag);
+					fill-opacity: 1;"/>
+			<path d="M200,200 L138,369 A180,180 0 0,1 20,194 z"
+				style="fill:url(#qbert);
+					fill-opacity: 1;"/>		
+			<path d="M200,200 L20,194 A180,180 0 0,1 75,71 z"
+				style="fill:url(#razorscale);
+					fill-opacity: 1;"/>
+			<path d="M200,200 L75,71 A180,180 0 0,1 200,20 z"
+				style="fill:url(#cloudpuff);
+					fill-opacity: 1;"/>
+		</svg>
+			
+			<!-- Colour overlay -->
+
+			<svg width="400" height="400" style="">
+			<path d="M200,200 L200,20 A180,180 0 0,1 377,231 z"
+				style="fill:url(#dotrock);
+					fill-opacity: 1;"/>
+			<path d="M200,200 L377,231 A180,180 0 0,1 138,369 z"
+				style="fill:url(#diag);
+					fill-opacity: 1;"/>
+			<path d="M200,200 L138,369 A180,180 0 0,1 20,194 z"
+				style="fill:url(#qbert);
+					fill-opacity: 1;"/>		
+			<path d="M200,200 L20,194 A180,180 0 0,1 75,71 z"
+				style="fill:url(#razorscale);
+					fill-opacity: 1;"/>
+			<path d="M200,200 L75,71 A180,180 0 0,1 200,20 z"
+				style="fill:url(#cloudpuff);
+					fill-opacity: 1;"/>
+
+
+			<path d="M200,200 L200,20 A180,180 0 0,1 377,231 z"
+				style="fill:#FACC8A;
+					fill-opacity: 0.8;"/>
+			<path d="M200,200 L377,231 A180,180 0 0,1 138,369 z"
+				style="fill:#50E3C2;
+					fill-opacity: 0.8;"/>
+			<path d="M200,200 L138,369 A180,180 0 0,1 20,194 z"
+				style="fill:#F8E71C;
+					fill-opacity: 0.8;"/>
+			<path d="M200,200 L20,194 A180,180 0 0,1 75,71 z"
+				style="fill:#E63F83;
+					fill-opacity: 0.8;"/>
+			<path d="M200,200 L75,71 A180,180 0 0,1 200,20 z"
+				style="fill:#76C2DD;
+					fill-opacity: 0.8;"/>
+		</svg> 
+	</body>
+</html>
