@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>svg animation test sheet</title>
+		<!-- I keep a bunch of junk up here, pretty much just to help remember syntax... -->
+
+		<!-- <circle id="sclera-mask" fill="#FFFFFF" cx="20" cy="20" r="60" style="clip-path: url(#clipPath);" ></circle> -->
+
+		<style>
+			body{
+				font-family:sans-serif;
+				font-size:7pt;
+			}
+			ul, ul li {
+				margin:0 0.8em;
+				padding:0;
+				list-style-type:disc;
+			}
+			.example_container{
+				width:400px;
+				height:400px;
+			}
+			.appendix{
+			}
+
+			#sclera{
+				fill:rgba(255,0,255,1);
+				stroke:rgba(0,0,255,1);
+				opacity:0.5;
+				stroke-dasharray: 10 2;
+				stroke-width:3px;
+			}
+
+			#sclera-mirror{
+				/*fill:yellow;*/
+			}
+
+			#eye{
+				fill:#eee;
+			}
+
+		</style>
+	</head>
+	<body>
+		<svg id="reusable-bits" style="display:none;">
+	        <!--this is my grid, it also has some diagonals-->
+	        <!--I should probably add some numbers in letters in here because i totally forget them all the time...  -->
+	        <defs>
+				<g id="guide" style="stroke: #00eeff; stroke-width:0.4">
+			       	<!-- horizontal guides -->
+			       	<path d="M0,0 L400,0" />
+			       	<path d="M0,100 L400,100" />
+			        <path d="M0,200 L400,200" />
+			        <path d="M0,300 L400,300" />
+			        <path d="M0,400 L400,400" />
+			        <!-- vertical guides -->
+			        <path d="M0,0 L0,400" />
+			        <path d="M100,0 L100,400" />
+			        <path d="M200,0 L200,400" />
+			        <path d="M300,0 L300,400" />
+			        <path d="M400,0 L400,400" />
+			        <!-- diagonal guides -->
+			        <path d="M0,0 L400,400" />
+			        <path d="M0,400 L400,0" />
+			        <!-- p.s. stroke-dasharray:2,2; is for losers... -->
+			    </g>
+		</svg>
+		
+			<svg class="example_container" width="100%" heigh="100%">
+				<g transform="translate(0,0)">	
+					<circle id="eye" fill="#000" cx="200" cy="200" r="200"></circle>
+	          		<path 
+		          		d="m0,200 q200,200 400,0 q-200,-200 -400,-0 Z" 
+		          		id="sclera" 
+	          		>
+					<animate 
+						id="one"
+						dur="3s" 
+			            repeatCount="indefinite" 
+						attributeName="d"
+	                    values="m0,200 q200,200 400,0 q-200,-200 -400,-0 Z;
+	                    		m0,200 q200,0 400,0 q-100,0 -400,-0 Z;
+	                    		m0,200 q200,200 400,0 q-200,-200 -400,-0 Z;
+	                    		m0,200 q200,200 400,0 q-200,-200 -400,-0 Z"/>
+	          		</path>
+	          		<use xlink:href="#guide" />
+	          		<text y="410"></text>
+
+	          	</g>
+	        </svg>
+	        <p>Quadratic bezier curve, two points. I seem to have my control points at oppisite ends which prodcuces the weird asymetrical animation</p>
+	        <div class="wrap">
+	        	<div class="wrap-extra">
+			        <svg class="example_container" version="1.1" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin meet" viewBox="0 0 400 400"
+>  	
+			          	<g>
+					        <circle id="eye" cx="200" cy="200" r="200"></circle>
+				        	<path 
+				          		d="m0,200 q0,0 200,100 q100,0 200,-100 q0,0 -200,-100 q-100,0 -200,100 Z" 
+				          		id="sclera">
+			          		</path>
+			          		<use xlink:href="#guide" />
+			          	</G>
+			        </svg>
+		    	</div>
+	    	</div>
+	        <p>Quadratic bezier curve, four points... :|</p>
+          	<svg class="example_container">  	
+          		<g>
+			        <circle id="eye" cx="200" cy="200" r="200"></circle>
+			        <circle id="sclera" cx="200" cy="200" r="100">
+					   <animate attributeName="cx" attributeType="XML"
+								from="100"  to="300"
+								begin="0s" dur="2s"
+								repeatCount="indefinite"
+								calcMode="spline" 
+								keyTimes="0; 1"
+								keySplines=".75 0 .25 1"/>
+			        </circle>
+			        <use xlink:href="#guide" />
+          		</g>
+          	</svg>
+          	<p>figuring out calc mode</p>
+          	<svg class="example_container"> 
+          		<defs>
+				  <pattern id="pattern"
+				           x="10" y="10" width="20" height="20"
+				           patternUnits="userSpaceOnUse" >
+				    		<animate dur="0.4s" repeatCount="indefinite" attributeName="x" values="0;20"/>
+		                    <animate dur="0.4s" repeatCount="indefinite" attributeName="y" values="0;20"/>
+
+					<g style="stroke: #f0F; stroke-width:1;stroke-linecap:square; fill:none;">
+						<circle cx="10" cy="10" r="5" style="fill:#f0f">
+		                </circle>
+					<!-- 	<path d="M0,20 L20,0" style="stroke:#000;" />
+						<path d="M0,0 L40,40" /> -->
+					</g>
+				  </pattern>
+				</defs> 	
+          		<g>
+			        <circle id="eye" cx="200" cy="200" r="200" style=" fill: url(#pattern);" /> ></circle>
+			        <use xlink:href="#guide" />
+          		</g>
+          	</svg>
+          	<p>pattern fills</p>
+          	<svg class="example_container">	
+          		<g>
+
+			        <circle id="eye" cx="200" cy="200" r="200"></circle>
+					<path 
+		          		d="m0,200 C100,50 300,50 400,200 Z" 
+		          		id="sclera" 
+		          		>
+		          		<animate
+		          			dur="1s" 
+				            repeatCount="indefinite" 
+							attributeName="d"
+		                    values="m0,200 C100,50 300,50 400,200 Z;
+		                    		m0,200 C100,200 300,200 400,200 Z;
+		                    		m0,200 C100,50 300,50 400,200 Z;"/>
+	          		</path>
+			        <use xlink:href="#guide" />
+          		</g>
+      		</svg>
+      		<p>Cubic bezier curves</p>
+      		<svg class="example_container">					
+          		<g>
+					<circle id="eye" fill="#333" cx="200" cy="200" r="200"></circle>
+				<g>	
+					<path 
+						d="m0,200 C100,50 300,50 400,200 Z" 
+						id="sclera" 
+						>
+						<animate
+							dur="2s" 
+				        repeatCount="indefinite" 
+						attributeName="d"
+				        values="m0,200 C100,50 300,50 400,200 Z;
+				        		m0,200 C100,200 300,200 400,200 Z;
+				        		m0,200 C100,50 300,50 400,200 Z;"
+						calcMode="spline" 
+						keyTimes="0; .5; 1;"
+						keySplines="1 0 1 0;1 0 1 0"
+				    />
+					</path>
+					<path 
+						d="m0,200 C100,50 300,50 400,200 Z" 
+						id="sclera"
+						transform="rotate(180 200 200)"
+						>
+						<animate
+							dur="2s" 
+				        repeatCount="indefinite" 
+						attributeName="d"
+				        values="m0,200 C100,50 300,50 400,200 Z;
+				        		m0,200 C100,200 300,200 400,200 Z;
+				        		m0,200 C100,50 300,50 400,200 Z;"
+						calcMode="spline" 
+						keyTimes="0; .5; 1;"
+						keySplines="1 0 1 0;1 0 1 0"/>
+					</path>
+				</g>				
+				<!-- In my infinite wisdom i chose to re-write all my points upside down instead of just rotatting the duplicating and rotating the fricking shape -->
+				<!--<path 
+		          		d="m0,200 C100,350 300,350 400,200 Z" 
+		          		id="sclera" 
+		          		>
+		          		<animate
+		          			dur="2s" 
+				            repeatCount="indefinite" 
+							attributeName="d"
+		                    values="m0,200 C100,350 300,350 400,200 Z;
+		                    		m0,200 C100,200 300,200 400,200 Z;
+		                    		m0,200 C100,350 300,350 400,200 Z;"
+							calcMode="spline" 
+							keyTimes="0; .5; 1;"
+							keySplines="1 0 1 0;1 0 1 0"
+		                />
+	          		</path> -->
+			    <use xlink:href="#guide" />
+	      	</g>
+		</svg>
+		<p>Cubic bezier curves with easing, so wait... how many fricking points are wtf!??!?!?!</p>
+		
+
+
+		<div class="appendix">
+		<p>Appendix</p>
+			<ul>
+				<li>http://tavmjong.free.fr/blog/?p=741</li>
+				<li>http://www.w3.org/TR/SVG/paths.html#PathElement</li>
+				<li>http://www.w3.org/TR/SVG/animate.html#AnimateTransformElement</li>
+				<li>http://www.w3.org/TR/2001/REC-smil-animation-20010904/#Restart</li>
+				<li>http://tutorials.jenkov.com/svg/svg-animation.html</li>
+				<li>http://www.w3.org/TR/SVG/animate.html#KeyPointsAttribute</li>
+				<li>http://www.w3.org/TR/2001/REC-smil-animation-20010904/#AnimFuncCalcMode</li>
+				<li>http://www.w3.org/TR/2001/REC-smil-animation-20010904/#KeyTimesAttribute</li>
+				<li>http://www.w3.org/TR/SMIL3/smil-animation.html#animationNS-animateMotionElementAdv</li>
+				<li>http://msdn.microsoft.com/en-us/library/ms533119(v=vs.85).aspx#paths</li>	
+				<li>http://en.wikipedia.org/wiki/Paul_de_Casteljau</li>	
+				<li>http://en.wikipedia.org/wiki/Pierre_BÃ©zier</li>	
+				<li>http://en.wikipedia.org/wiki/BÃ©zier_curve</li>	
+				<li>http://jonibologna.com/svg-viewbox-and-viewport/</li>	
+				<li>http://www.justinmccandless.com/blog/Making+Sense+of+SVG+viewBox's+Madness</li>	
+			</ul>
+		</div>
+
+	</body>
+</html>
